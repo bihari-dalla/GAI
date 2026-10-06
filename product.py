@@ -26,3 +26,28 @@ result = generator(
 
 print("\nProduct Description:\n")
 print(result[0]["generated_text"])
+
+---------------------------------------------------------------
+#ollama
+import ollama
+
+prompt = f"""
+Write an engaging product description for:
+
+Product Name: {input("Product Name: ")}
+Key Features: {input("Key Features: ")}
+Target Audience: {input("Target Audience: ")}
+
+Include:
+1. Catchy headline
+2. Persuasive description body
+3. Bulleted key benefits.
+"""
+
+response = ollama.chat(
+    model="llama3.2",
+    messages=[{"role": "user", "content": prompt}]
+)
+
+print("\n" + "=" * 40)
+print(response["message"]["content"])
