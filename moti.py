@@ -14,3 +14,21 @@ results = generator(prompt, max_new_tokens=30, num_return_sequences=1, temperatu
 
 print("\ngenerated text: ")
 print(results[0]["generated_text"])
+
+-----------------------------------------------------------------------------
+#ollama
+
+import ollama
+
+theme = input("Enter a theme: ")
+
+prompt = f"I write a short, peaceful motivational quote about {theme}. Include an inspiring closing sentence."
+
+response = ollama.chat(
+    model="llama3.2",
+    messages=[{"role": "user", "content": prompt}]
+)
+
+print("\n" + "=" * 40)
+print(response["message"]["content"])
+print("=" * 40)
